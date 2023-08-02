@@ -13,6 +13,7 @@ use core::fmt;
 use core::iter::Sum;
 use core::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 use ff::PrimeField;
+#[cfg(feature = "random")]
 use rand_core::RngCore;
 use subtle::{Choice, CtOption};
 
@@ -76,6 +77,7 @@ pub trait Group:
     /// this group.
     ///
     /// This function is non-deterministic, and samples from the user-provided RNG.
+    #[cfg(feature = "random")]
     fn random(rng: impl RngCore) -> Self;
 
     /// Returns the additive identity, also known as the "neutral element".
